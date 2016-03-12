@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 from math import sqrt
 #一个词典，包含影迷以及电影评价
-
+#hello,a little test
 critics = {
 	'Lisa Rose':{
 		'Lady in the Water': 2.5, 
