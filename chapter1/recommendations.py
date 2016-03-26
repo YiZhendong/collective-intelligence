@@ -53,8 +53,10 @@ critics = {
       	'You, Me and Dupree': 1.0, 
        	'Superman Returns': 4.0}, 
 }
-#hello
+#欧几里得距离评价
 #返回一个有关person1与person2的基于距离的相似度评价
+#该方法存在缺陷，因为该方法仅仅考虑了两个人之间的相似之处，比如一个人评论了A,B,C,D，而另一个人评论了B,C,D,第三个人评论了
+#B,C,D,E,按照该方法，无法区分三个人之间的相似程度
 def sim_distance(prefs,person1,person2):
 	#得到shared_items的列表
 	si={}
@@ -69,7 +71,7 @@ def sim_distance(prefs,person1,person2):
 
         return 1/(1+sqrt(sum_of_squares))
 
-
+#皮尔逊相关度
 #同样是返回一个有关person1和person2的相似度评价，但与之前不相同的是如果一个人一般总比另一个人评分高一点，利用基于距离的评价会
 #判断有误，所以此方法提供一个基于拟合直线的评价方法，利用点距离你和直线的偏移量来判断，如果相关系数为1，则证明完全一样
 def sim_pearson(prefs,person1,person2):
@@ -107,6 +109,7 @@ def sim_pearson(prefs,person1,person2):
 
     pass
 
+#从反应偏好的个数和相似度中返回最为匹配者
 def topMatches(prefs,person,n=5,similarity=sim_pearson):
     scores=[(similarity(prefs,person,other),other)
             for other in prefs if other != person]
